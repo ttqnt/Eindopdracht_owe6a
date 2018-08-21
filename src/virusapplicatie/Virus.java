@@ -9,14 +9,14 @@ import java.util.*;
 public class Virus implements Comparable {
     private int id;
     private String soort;
-    private ArrayList <Integer> hostList = new ArrayList<>();
     private String classificatie;
+    private ArrayList <Integer> hostList;
     
-    public Virus(int i, String s, Integer h, String c){
+    public Virus(int i, String s, ArrayList hList, String c){
         setId(i);
         setSoort(s);
         setClassification(c);
-        addHost(h);
+        createHostList(hList);
     }
     
     private void setId(int i){
@@ -27,11 +27,16 @@ public class Virus implements Comparable {
         soort = s;
     }
     
+    private void createHostList(ArrayList hList){
+        hostList = hList;
+    }
+    
     private void addHost(Integer h){
         hostList.add(h);
     }
     
     private void setClassification(String c){
+        //adjust so that only classification name is present
         classificatie = c;
     }
     
@@ -69,7 +74,7 @@ public class Virus implements Comparable {
 
     @Override
     public int hashCode(){
-        return this.id + this.soort.hashCode();
+        return this.soort.hashCode() + this.id;
     }
 
 }

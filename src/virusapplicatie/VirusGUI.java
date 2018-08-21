@@ -5,11 +5,14 @@
  */
 package virusapplicatie;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author Karin Geertse
  */
 public class VirusGUI extends javax.swing.JFrame {
+    private VirusLogica virusData;
 
     /**
      * Creates new form VirusGUI
@@ -62,6 +65,11 @@ public class VirusGUI extends javax.swing.JFrame {
         jComboBox1.setToolTipText("");
 
         jButton1.setText("Open");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Host ID");
 
@@ -229,6 +237,10 @@ public class VirusGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        virusData = new VirusLogica(jTextField1.getText());        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
