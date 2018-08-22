@@ -31,12 +31,8 @@ public class Virus implements Comparable {
         hostList = hList;
     }
     
-    private void addHost(Integer h){
-        hostList.add(h);
-    }
-    
+  
     private void setClassification(String c){
-        //adjust so that only classification name is present
         classificatie = c;
     }
     
