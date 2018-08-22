@@ -5,7 +5,7 @@
  */
 package virusapplicatie;
 
-import java.awt.event.ActionEvent;
+//import java.awt.event.ActionEvent;
 import java.util.*;
 import javax.swing.JOptionPane;
 
@@ -62,8 +62,6 @@ public class VirusGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Viral Classification");
 
-        jTextField1.setText("Search");
-
         jButton1.setText("Open");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,12 +92,27 @@ public class VirusGUI extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("Id");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Classificatie");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Aantal hosts");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,7 +287,7 @@ public class VirusGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nonexistent file/invalid URL");          
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-     
+
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         String selectedHost = (String) jComboBox2.getSelectedItem();
         virusData.createVirusList(selectedHost, 1);
@@ -285,7 +298,11 @@ public class VirusGUI extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String selection = (String) jComboBox1.getSelectedItem();
-        virusData.setClassSelect(selection);
+        virusData.setClassSelect(selection);      
+        jTextArea1.setText(virusData.virusClassSelect(selection, 1));        
+        jTextArea2.setText(virusData.virusClassSelect(selection, 2));
+        if(virusData.twoSets())
+            jTextArea3.setText(virusData.virusClassSelect(selection, 3));
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
@@ -295,6 +312,30 @@ public class VirusGUI extends javax.swing.JFrame {
         if(virusData.twoSets())
             jTextArea3.setText(virusData.getVList(3));
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        virusData.changeSort(0);
+        jTextArea1.setText(virusData.getVList(1));
+        jTextArea2.setText(virusData.getVList(2));
+        if(virusData.twoSets())
+            jTextArea3.setText(virusData.getVList(3));
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        virusData.changeSort(1);
+        jTextArea1.setText(virusData.getVList(1));
+        jTextArea2.setText(virusData.getVList(2));
+        if(virusData.twoSets())
+            jTextArea3.setText(virusData.getVList(3));
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        virusData.changeSort(2);
+        jTextArea1.setText(virusData.getVList(1));
+        jTextArea2.setText(virusData.getVList(2));
+        if(virusData.twoSets())
+            jTextArea3.setText(virusData.getVList(3));
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
