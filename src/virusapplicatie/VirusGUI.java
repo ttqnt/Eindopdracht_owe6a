@@ -6,7 +6,7 @@
 package virusapplicatie;
 
 import java.awt.event.ActionEvent;
-import java.util.Set;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -278,7 +278,9 @@ public class VirusGUI extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         String selectedHost = (String) jComboBox2.getSelectedItem();
         virusData.createVirusList(selectedHost, 1);
-        
+        jTextArea1.setText(virusData.getVList(1));
+        if(virusData.twoSets())
+            jTextArea3.setText(virusData.getVList(3));
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -289,6 +291,9 @@ public class VirusGUI extends javax.swing.JFrame {
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         String selectedHost = (String) jComboBox3.getSelectedItem();        
         virusData.createVirusList(selectedHost, 2);
+        jTextArea2.setText(virusData.getVList(2));
+        if(virusData.twoSets())
+            jTextArea3.setText(virusData.getVList(3));
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,6 +14,7 @@ public class VirusLogica {
     private HashMap<String, ArrayList<Integer>> hostMap;
     private SortedSet<Virus> vList1;
     private SortedSet<Virus> vList2;
+    private SortedSet<Virus> intersection;
     private String classificationSelect = "(none)";
     
     public VirusLogica(String input) throws InvalidInputException {
@@ -123,6 +124,19 @@ public class VirusLogica {
         hostMap.put(h, hList);
     }
     
+    private void createIntersect(){
+        SortedSet<Virus> intersect;
+        
+        if(vList1.size() < vList2.size()){
+            intersect = new TreeSet<>(vList1);
+            intersect.retainAll(vList2);
+        } else {
+            intersect = new TreeSet<>(vList2);
+            intersect.retainAll(vList1);            
+        }        
+        intersection = intersect;
+    }
+    
     public HashMap getHostMap(){
         return hostMap;
     }
@@ -147,26 +161,44 @@ public class VirusLogica {
         switch (i) {
             case 1:  i = 1;                
                 vList1 = vList; 
-                if (vList2 != null)
+                if (twoSets())
                     createIntersect();
                 break;
             case 2:  i = 2;
                 vList2 = vList;
-                if (vList1 != null)
+                if (twoSets())
                     createIntersect();
                 break;
         } 
     }
     
-    public SortedSet getVLijst1(){
-        return vList1;
+    public String getVList(int i){        
+        String output = "";
+        switch (i) {
+            case 1:  i = 1;                
+                for (Virus v : vList1)
+                    output += v.getId() + "\n";
+                break;
+            case 2:  i = 2;
+                for (Virus v : vList2)
+                    output += v.getId() + "\n";
+                break;
+            case 3:  i = 3;
+                for (Virus v : intersection)
+                    output += v.getId() + "\n";
+                break;
+        }
+        return output;
     }
     
-    public SortedSet getVLijst2(){
-        return vList2;
+    public boolean twoSets(){
+        boolean bool = false;
+        if (vList1 != null && vList2 != null)
+            bool = true;
+        return bool;
     }
     
-    public void createIntersect(){
-        
+    public SortedSet getIntersection(){
+        return intersection;
     }
 }
